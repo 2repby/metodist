@@ -1,10 +1,12 @@
 <?php
-
-
     use Dotenv\Dotenv;
+    if (file_exists(__DIR__."/.env"))
+    {
 
-    $dotenv = Dotenv::createImmutable(__DIR__);
-    $dotenv->load();
+        $dotenv = Dotenv::createImmutable(__DIR__);
+        $dotenv->load();
+    }
+
 
     $host = $_ENV['host'];
     $db   = $_ENV['database'];
