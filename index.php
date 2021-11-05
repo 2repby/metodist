@@ -1,6 +1,7 @@
 <?php
     require __DIR__ . '/vendor/autoload.php';
     require 'dbconnect.php';
+    require 'auth.php';
 ?>
 <!doctype html>
 <html lang="en">
