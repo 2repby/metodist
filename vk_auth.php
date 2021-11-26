@@ -25,7 +25,7 @@
     );
 
     $vk_auth_url = $url . '?' . urldecode(http_build_query($params));
-
+// Если переход после прохождения аутентификации на VK
 if (isset($_GET['code'])) {
     $result = false;
     $params = array(
@@ -61,7 +61,7 @@ if (isset($_GET['code'])) {
         //Аутентифицируем пользователя
         session_start();
         $_SESSION['login'] = $userInfo["screen_name"];
-        $query = $pdo->query("SELECT password FROM users WHERE vk_id='" . $userInfo['id'] . "'");
+        $query = $pdo->query("SELECT * FROM users WHERE vk_id='" . $userInfo['id'] . "'");
         $row=$query->fetch();
 
         //Если пользователь найден в таблице
@@ -71,11 +71,10 @@ if (isset($_GET['code'])) {
             //Если у пользователя пустой логин
             if (is_null($row['login'])) {
                 $query = $pdo->query("UPDATE users SET login='" . $userInfo["screen_name"] . "' WHERE vk_id =" . $userInfo['id']);
-
-
             }
+            if ($row['is_teacher']==1) $_SESSION['teacher'] = 1;
         }
-        // Если пользователь не найден в табдице - добавить
+        // Если пользователь не найден в таблице - добавить
         else{
 
             $err_msg = "Пользователь успешно добавлен в таблицу";

@@ -14,6 +14,7 @@
             if (MD5($_POST["password"])!= $row['password']) $err_msg = "Неправильный пароль!";
             else {
                 $_SESSION['login'] = $_POST["login"];
+                if ($row['is_teacher']==1) $_SESSION['teacher'] = true;
                 $err_msg = "Вы успешно вошли в систему";
             }
         }

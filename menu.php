@@ -23,7 +23,7 @@ if(isset($_SESSION['login']))
 {
     echo '<a class="nav-link disabled" href="#">Привет, '.$_SESSION['login'].'!';
     echo '<form class="form-inline my-2 my-lg-0">';
-    echo '<a class="btn btn-outline-success my-2 my-sm-0 href="index.php?logout=1">Выйти</a>';
+    echo '<a class="btn btn-outline-success my-2 my-sm-0" href="index.php?logout=1">Выйти</a>';
     echo '</form>';
 }
 else

@@ -1,5 +1,5 @@
 <?php
-if(isset($_SESSION['login'])) {
+if($_SESSION['login']=='teacher') {
     try {
         $query = $pdo->query('DELETE FROM lesson WHERE id=' . $_GET["lesson"]);
         $err_msg = "Урок успешно удален";
