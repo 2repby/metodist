@@ -1,21 +1,49 @@
 <?php
     require __DIR__ . '/vendor/autoload.php';
     require 'dbconnect.php';
+    require 'vk_auth.php';
     require 'auth.php';
+    require 'header.php';
+    require 'menu.php';
+
+
+echo "<main role='main' class='container'>";
+
+if ($_GET['c'] == '') $c = 1;
+else $c = $_GET['c'];
+switch ($c) {
+    case "1":
+        {
+
+            if(isset($_SESSION['login'])) {
+                switch ($_GET["a"]) {
+                    case "1":
+                        require("add_lesson.php");break;
+                    case "2":
+                        require("del_lesson.php");break;
+                }
+            };
+
+
+
+            require("lessons.php");
+        }break;
+    case "2":
+        {
+            require("lesson.php");
+
+        }break;
+    case "3":
+        {
+            if(isset($_SESSION['login'])) require("lesson_form.php");
+
+        }break;
+
+}
+if ($err_msg) require 'message.php';
+echo '</main>';
+require 'footer.php';
 ?>
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Методист СурГУ</title>
-</head>
-<body>
-<h1>Занятия</h1>
-<?php
-    require 'lessons.php';
-?>
+
 </body>
 </html>

@@ -17,4 +17,5 @@
     $dsn = 'pgsql:host='.$host.';port='.$port.';dbname='.$db;
 
     $pdo = new PDO($dsn, $user, $pass);
+    $pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 
