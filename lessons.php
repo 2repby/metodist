@@ -18,7 +18,11 @@
         <tbody>
 <?php
 
-$query = $pdo->query('SELECT * FROM users RIGHT JOIN lesson ON users.id = lesson.teacher_id ORDER BY start_at;');
+$query = $pdo->query('SELECT lesson.id, name, last_name, first_name, student_group, 
+                            start_at AT TIME ZONE INTERVAL \'+05:00\' as start_at, 
+                            end_at AT time zone INTERVAL \'+05:00\' as end_at, 
+                            comment 
+                            FROM users RIGHT JOIN lesson ON users.id = lesson.teacher_id ORDER BY start_at;');
 
 while ($row = $query->fetch())
 {
