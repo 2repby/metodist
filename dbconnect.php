@@ -13,6 +13,8 @@
     $pass = $_ENV['password'];
     $port = $_ENV['port'];
 
+    $timezone = $_ENV['timezone'];
+
 
     $dsn = 'pgsql:host='.$host.';port='.$port.';dbname='.$db;
 

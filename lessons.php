@@ -10,7 +10,7 @@
             <th scope="col">Начало</th>
             <th scope="col">Окончание</th>
             <th scope="col">Примечание</th>
-            <th scope="col">Присуствующие</th>
+            <th scope="col">Присутствующие</th>
             <?php if(isset($_SESSION['username'])) echo "<th scope='col'>Действие</th>" ?>
             <th scope="col">Действие</th>
         </tr>
@@ -19,8 +19,8 @@
 <?php
 
 $query = $pdo->query('SELECT lesson.id, name, last_name, first_name, student_group, 
-                            start_at AT TIME ZONE INTERVAL \'+05:00\' as start_at, 
-                            end_at AT time zone INTERVAL \'+05:00\' as end_at, 
+                            start_at AT TIME ZONE INTERVAL \''.$timezone.'\' as start_at, 
+                            end_at AT time zone INTERVAL \''.$timezone.'\' as end_at, 
                             comment 
                             FROM users RIGHT JOIN lesson ON users.id = lesson.teacher_id ORDER BY start_at;');
 
