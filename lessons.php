@@ -11,8 +11,8 @@
             <th scope="col">Окончание</th>
             <th scope="col">Примечание</th>
             <th scope="col">Присутствующие</th>
-            <?php if(isset($_SESSION['username'])) echo "<th scope='col'>Действие</th>" ?>
-            <th scope="col">Действие</th>
+            <?php if($_SESSION['teacher']==true) echo "<th scope='col'>Действие</th>" ?>
+
         </tr>
         </thead>
         <tbody>
@@ -37,7 +37,12 @@ while ($row = $query->fetch())
             <td><?php echo $row['end_at'] ?> </td>
             <td><?php echo $row['comment'] ?> </td>
             <td><a href="/?c=2&lesson=<?php echo $row['id'] ?>">Просмотреть</a></td>
-            <td><a href="/?c=1&a=2&lesson=<?php echo $row['id'] ?>">Удалить</a></td>
+        <?php
+            if($_SESSION['teacher']==true) {
+                echo ('<td><a href="/?c=1&a=2&lesson='.$row['id'].'">Удалить</a></td>');
+            }
+            ?>
+
     </tr>
 
 <?php } ?>

@@ -1,6 +1,6 @@
 <?php
 
-if($_SESSION['teacher']==1) {
+if($_SESSION['teacher']==true) {
     try {
         $sql = 'INSERT INTO lesson(name,teacher_id,keyword,start_at,end_at,student_group,comment) VALUES(:name,:teacher,:keyword,:start_at,:end_at,:student_group,:comment)';
         $stmt = $pdo->prepare($sql);
@@ -9,8 +9,8 @@ if($_SESSION['teacher']==1) {
         $stmt->bindValue(':name', $_GET['name']);
         $stmt->bindValue(':teacher', $_GET['teacher']);
         $stmt->bindValue(':keyword', $_GET['keyword']);
-        $stmt->bindValue(':start_at', $_GET['start_at']." +05:00");
-        $stmt->bindValue(':end_at', $_GET['end_at']." +05:00");
+        $stmt->bindValue(':start_at', $_GET['start_at']." ".$_ENV['timezone']);
+        $stmt->bindValue(':end_at', $_GET['end_at']." ".$_ENV['timezone']);
         $stmt->bindValue(':student_group', $_GET['student_group']);
         $stmt->bindValue(':comment', $_GET['comment']);
         // execute the insert statement
@@ -24,3 +24,4 @@ if($_SESSION['teacher']==1) {
         $err_msg = "Ошибка: " . $error->getMessage();
     }
 }
+else $err_msg = "У вас нет полномочий для выполнения данного действия";
