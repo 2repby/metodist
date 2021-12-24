@@ -18,6 +18,7 @@ if($_SESSION['teacher']==true) {
         $err_msg = "Урок успешно добавлен";
         // return generated id
         // $id = $pdo->lastInsertId('id');
+        header("Location: /?errmsg=".$err_msg);
 
 
     } catch (PDOexception $error) {

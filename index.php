@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     require __DIR__ . '/vendor/autoload.php';
     use Dotenv\Dotenv;
     if (file_exists(__DIR__."/.env"))
@@ -47,7 +48,7 @@ switch ($c) {
         }break;
 
 }
-if ($err_msg) require 'message.php';
+require 'message.php';
 echo '</main>';
 require 'footer.php';
 ?>

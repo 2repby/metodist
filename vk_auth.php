@@ -72,6 +72,10 @@ if (isset($_GET['code'])) {
             if (is_null($row['login'])) {
                 $query = $pdo->query("UPDATE users SET login='" . $userInfo["screen_name"] . "' WHERE vk_id =" . $userInfo['id']);
             }
+            //Если у пользователя пустой пароль
+            if (is_null($row['password'])) {
+                $query = $pdo->query("UPDATE users SET password='" . md5(generatePassword()) . "' WHERE vk_id =" . $userInfo['id']);
+            }
             if ($row['is_teacher']==1) $_SESSION['teacher'] = 1;
         }
         // Если пользователь не найден в таблице - добавить
